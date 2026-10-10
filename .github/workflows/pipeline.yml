@@ -1,0 +1,25 @@
+name: Basic CI/CD Pipeline
+
+on:
+	push:
+		branches:
+		- main
+	pull_request:
+	
+jobs:
+	ci-cd-pipeline:
+		runs-on:ubuntu-latest
+		
+		steps:
+		#1. Source:checkout code
+		-name: Checkout code
+		uses:actions/checkout@v3
+		
+		#2. Build: install dependencies
+		-name: Install dependencies
+		run:npm install
+		
+		#3. Test:run tests
+		-name:Run tests
+		run:rpm test
+	
