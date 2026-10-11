@@ -1,9 +1,10 @@
-const express = require("express");
+const http = require('http');
 
-const app = express();
-
-app.get("/", (req, res) => {
-    res.send("Hello, CI/CD World!");
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello from Docker!\n');
 });
 
-module.exports = app;
+server.listen(3000, '0.0.0.0', () => {
+  console.log('Server running on port 3000');
+});

@@ -9,6 +9,7 @@ COPY package.json ./
 RUN npm install
 
 # 4. the rest of the app
+COPY server.js .
 
 # 5. Expose port
 EXPOSE 3000
