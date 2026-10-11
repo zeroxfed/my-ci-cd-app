@@ -1,10 +1,18 @@
-const http = require('http');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello from Docker!\n');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, CI/CD World!');
 });
 
-server.listen(3000, '0.0.0.0', () => {
-  console.log('Server running on port 3000');
-});
+// Start the server only when running this file directly.
+// Importing it from Jest will not start a listener.
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+module.exports = app;
